@@ -37,7 +37,7 @@ const VerificationView: FC<AuthenticatedNavProps<'VerificationView'>> = ({
 export default VerificationView;
 
 const styles = ScaledSheet.create({
-  scrollView: {flexGrow: 1, backgroundColor: Colors.white.main},
+  scrollView: {flexGrow: 1, backgroundColor: Colors.secondary.main},
   mainContainer: {
     flex: 1,
     backgroundColor: Colors.secondary.main,

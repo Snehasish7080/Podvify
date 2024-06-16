@@ -77,7 +77,7 @@ const SignupView: FC<AuthenticatedNavProps<'SignupView'>> = ({navigation}) => {
 export default SignupView;
 
 const styles = ScaledSheet.create({
-  scrollView: {flexGrow: 1, backgroundColor: Colors.white.main},
+  scrollView: {flexGrow: 1, backgroundColor: Colors.secondary.main},
   mainContainer: {
     flex: 1,
     alignItems: 'center',

@@ -1,14 +1,23 @@
 import {Pressable, TextInput, View} from 'react-native';
-import React, {FC, useRef, useState} from 'react';
+import React, {FC, useEffect, useRef, useState} from 'react';
 import AppText from './AppText';
 import {ScaledSheet} from 'react-native-size-matters';
 import {Colors} from '../utils/theme/Colors';
 import {FontFamily} from '../utils/theme/FontFamily';
 import {getFontSize} from '../utils/theme/FontScale';
+import {StackActions, useNavigation} from '@react-navigation/native';
 
 const OtpInput: FC = () => {
   const [value, setValue] = useState<string>('');
   const ref = useRef<TextInput>(null);
+
+  const navigation = useNavigation();
+
+  useEffect(() => {
+    if (value.length === 4) {
+      navigation.dispatch(StackActions.replace('Home'));
+    }
+  }, [value]);
 
   return (
     <View style={styles.container}>
