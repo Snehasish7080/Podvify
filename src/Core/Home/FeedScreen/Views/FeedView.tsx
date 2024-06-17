@@ -5,22 +5,55 @@ import {Colors} from '../../../../utils/theme/Colors';
 import AppText from '../../../../Components/AppText';
 import {SearchIcon} from '../../../../Components/SearchIcon';
 import {FontFamily} from '../../../../utils/theme/FontFamily';
+import HighlightCard from '../../../../Components/HighlightCard';
+import {getFontSize} from '../../../../utils/theme/FontScale';
+import ShowCaseCard from '../../../../Components/ShowCaseCard';
 
 const FeedView: FC = () => {
   return (
-    <ScrollView contentContainerStyle={styles.scrollView}>
+    <ScrollView
+      contentContainerStyle={styles.scrollView}
+      scrollEventThrottle={16}
+      decelerationRate={'fast'}
+      showsVerticalScrollIndicator={false}>
       <View style={styles.mainContainer}>
-        <Pressable style={styles.searchBox}>
-          <AppText style={styles.searchTitle}>
-            Looking For Your Favourite Topic?
-          </AppText>
-          <SearchIcon />
-        </Pressable>
+        <View style={styles.serachboxContainer}>
+          <Pressable style={styles.searchBox}>
+            <AppText style={styles.searchTitle}>
+              Looking For Your Favourite Topic?
+            </AppText>
+            <SearchIcon />
+          </Pressable>
+        </View>
         <View style={styles.separatorContainer}>
           <View style={styles.separator} />
           <AppText style={styles.podOftheDay}>PODS OF THE DAY</AppText>
           <View style={styles.separator} />
         </View>
+        <ScrollView
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          contentContainerStyle={styles.horizontalScrollView}>
+          <HighlightCard />
+          <View style={styles.cardSeparator} />
+          <HighlightCard />
+          <View style={styles.cardSeparator} />
+          <HighlightCard />
+        </ScrollView>
+        <View style={styles.showCaseTitleContainer}>
+          <AppText style={styles.showcaseTitle}>Showcases</AppText>
+          <AppText style={styles.seeAll}>See All</AppText>
+        </View>
+        <ScrollView
+          horizontal
+          showsHorizontalScrollIndicator={false}
+          contentContainerStyle={styles.horizontalScrollView}>
+          <ShowCaseCard />
+          <View style={styles.cardSeparator} />
+          <ShowCaseCard />
+          <View style={styles.cardSeparator} />
+          <ShowCaseCard />
+        </ScrollView>
       </View>
     </ScrollView>
   );
@@ -29,13 +62,17 @@ const FeedView: FC = () => {
 export default FeedView;
 
 const styles = ScaledSheet.create({
-  scrollView: {flexGrow: 1, backgroundColor: Colors.secondary.main},
-  mainContainer: {
-    flex: 1,
-    alignItems: 'center',
+  scrollView: {
+    flexGrow: 1,
     backgroundColor: Colors.secondary.main,
-    paddingHorizontal: '30@s',
     paddingTop: 60,
+    paddingBottom: 100,
+  },
+  mainContainer: {
+    alignItems: 'center',
+  },
+  serachboxContainer: {
+    paddingHorizontal: '30@s',
   },
   searchBox: {
     height: 60,
@@ -59,9 +96,34 @@ const styles = ScaledSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     marginTop: 40,
+    marginHorizontal: '30@s',
+    marginBottom: 32,
   },
   podOftheDay: {
     fontSize: 16,
     marginHorizontal: 4,
+  },
+  horizontalScrollView: {
+    flexGrow: 1,
+    paddingHorizontal: '30@s',
+  },
+  cardSeparator: {
+    width: 15,
+  },
+  showCaseTitleContainer: {
+    width: '100%',
+    paddingHorizontal: '30@s',
+    marginTop: 40,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'space-between',
+    marginBottom: 34,
+  },
+  showcaseTitle: {
+    fontSize: getFontSize(20),
+    fontFamily: FontFamily.latoSemiBold,
+  },
+  seeAll: {
+    fontSize: getFontSize(12),
   },
 });
