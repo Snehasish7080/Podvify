@@ -6,7 +6,7 @@ import {FontFamily} from '../utils/theme/FontFamily';
 import {getFontSize} from '../utils/theme/FontScale';
 import AppText from './AppText';
 
-const ShowCaseCard: FC = () => {
+const FeedCard: FC = () => {
   return (
     <View style={styles.mainContainer}>
       <Pressable>
@@ -17,38 +17,19 @@ const ShowCaseCard: FC = () => {
           style={styles.cardImage}
         />
       </Pressable>
-      <View style={styles.viewContainer}>
-        <AppText style={styles.time}>10K Views</AppText>
-        <AppText style={styles.separator}>&bull;</AppText>
-        <AppText style={styles.time}>10 min ago</AppText>
-      </View>
     </View>
   );
 };
 
-export default ShowCaseCard;
+export default FeedCard;
 
 const styles = ScaledSheet.create({
   mainContainer: {
-    alignItems: 'flex-start',
+    width: '100%',
   },
   cardImage: {
-    width: 151,
-    height: 104,
-    borderRadius: 5,
-  },
-  viewContainer: {
-    flexDirection: 'row',
-    alignItems: 'center',
-    marginTop: 10,
-  },
-  time: {
-    fontSize: getFontSize(12),
-    fontFamily: FontFamily.latoSemiBold,
-    color: Colors.grey.label,
-  },
-  separator: {
-    color: Colors.grey.label,
-    marginHorizontal: 5,
+    width: '100%',
+    height: 168,
+    borderRadius: 10,
   },
 });

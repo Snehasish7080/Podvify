@@ -8,6 +8,7 @@ import {FontFamily} from '../../../../utils/theme/FontFamily';
 import HighlightCard from '../../../../Components/HighlightCard';
 import {getFontSize} from '../../../../utils/theme/FontScale';
 import ShowCaseCard from '../../../../Components/ShowCaseCard';
+import FeedCard from '../../../../Components/FeedCard';
 
 const FeedView: FC = () => {
   return (
@@ -54,6 +55,9 @@ const FeedView: FC = () => {
           <View style={styles.cardSeparator} />
           <ShowCaseCard />
         </ScrollView>
+        <AppText style={styles.followingTitle}>Followings</AppText>
+        <View style={styles.followingSeparator} />
+        <FeedCard />
       </View>
     </ScrollView>
   );
@@ -125,5 +129,16 @@ const styles = ScaledSheet.create({
   },
   seeAll: {
     fontSize: getFontSize(12),
+  },
+  followingTitle: {
+    fontFamily: FontFamily.latoBold,
+    fontSize: getFontSize(25),
+    marginTop: 40,
+    marginBottom: 10,
+  },
+  followingSeparator: {
+    width: 164,
+    height: 1,
+    backgroundColor: Colors.white.main,
   },
 });
