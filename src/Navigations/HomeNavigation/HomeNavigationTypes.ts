@@ -1,7 +1,7 @@
 import {BottomTabScreenProps} from '@react-navigation/bottom-tabs';
 
 export type HomeNavigationRouteList = {
-  FeedView: undefined;
+  FeedNavigation: undefined;
   ProfileView: undefined;
 };
 export type HomeNavigationProp<T extends keyof HomeNavigationRouteList> =
