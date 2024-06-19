@@ -16,7 +16,8 @@ const FeedView: FC = () => {
       contentContainerStyle={styles.scrollView}
       scrollEventThrottle={16}
       decelerationRate={'fast'}
-      showsVerticalScrollIndicator={false}>
+      showsVerticalScrollIndicator={false}
+      bounces={false}>
       <View style={styles.mainContainer}>
         <View style={styles.serachboxContainer}>
           <Pressable style={styles.searchBox}>
@@ -57,7 +58,15 @@ const FeedView: FC = () => {
         </ScrollView>
         <AppText style={styles.followingTitle}>Followings</AppText>
         <View style={styles.followingSeparator} />
-        <FeedCard />
+        <View style={styles.feedBox}>
+          <FeedCard />
+        </View>
+        <View style={styles.feedBox}>
+          <FeedCard />
+        </View>
+        <View style={styles.feedBox}>
+          <FeedCard />
+        </View>
       </View>
     </ScrollView>
   );
@@ -140,5 +149,11 @@ const styles = ScaledSheet.create({
     width: 164,
     height: 1,
     backgroundColor: Colors.white.main,
+    marginBottom: 40,
+  },
+  feedBox: {
+    paddingHorizontal: '30@s',
+    width: '100%',
+    marginBottom: 30,
   },
 });
