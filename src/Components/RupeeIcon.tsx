@@ -12,12 +12,12 @@ import {
 import React, {FC, useMemo} from 'react';
 import {Colors} from '../utils/theme/Colors';
 
-type UpvoteIconProps = {
+type RupeeIconProps = {
   width?: number;
   height?: number;
 };
-export const UpvoteIcon: FC<UpvoteIconProps> = ({height = 20, width = 20}) => {
-  const svg = useSVG(require('../Assets/icons/upvote.svg'));
+export const RupeeIcon: FC<RupeeIconProps> = ({height = 24, width = 24}) => {
+  const svg = useSVG(require('../Assets/icons/rupee.svg'));
   const paint = useMemo(() => Skia.Paint(), []);
 
   if (!svg) {
@@ -34,7 +34,9 @@ export const UpvoteIcon: FC<UpvoteIconProps> = ({height = 20, width = 20}) => {
   return (
     <Canvas style={{height: height, width: width}}>
       <Group layer={paint} transform={fitbox('contain', src, dst)}>
-        {svg && <ImageSVG svg={svg} x={0} y={0} width={20} height={20} />}
+        {svg && (
+          <ImageSVG svg={svg} x={0} y={0} width={width} height={height} />
+        )}
       </Group>
     </Canvas>
   );
