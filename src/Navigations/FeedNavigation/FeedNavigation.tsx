@@ -4,6 +4,7 @@ import {createNativeStackNavigator} from '@react-navigation/native-stack';
 import {FeedNavigationRouteList} from './FeedNavigationTypes';
 import FeedView from '../../Core/Home/FeedScreen/Views/FeedView';
 import VideoView from '../../Core/Home/FeedScreen/Views/VideoView';
+import ShowCaseVideoView from '../../Core/Home/FeedScreen/Views/ShowCaseVideoView';
 
 const Stack = createNativeStackNavigator<FeedNavigationRouteList>();
 
@@ -20,6 +21,13 @@ const FeedNavigation = () => {
       <Stack.Screen
         name="VideoView"
         component={VideoView}
+        options={{
+          headerShown: false,
+        }}
+      />
+      <Stack.Screen
+        name="ShowCaseVideoView"
+        component={ShowCaseVideoView}
         options={{
           headerShown: false,
         }}

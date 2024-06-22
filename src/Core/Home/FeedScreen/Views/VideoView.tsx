@@ -1,12 +1,5 @@
 import React, {FC} from 'react';
-import {
-  Dimensions,
-  FlatList,
-  Image,
-  Pressable,
-  ScrollView,
-  View,
-} from 'react-native';
+import {Dimensions, FlatList, Image, Pressable, View} from 'react-native';
 import {Colors} from '../../../../utils/theme/Colors';
 import {ScaledSheet} from 'react-native-size-matters';
 import {FontFamily} from '../../../../utils/theme/FontFamily';
@@ -32,6 +25,9 @@ const VideoView: FC = () => {
         />
       </View>
       <FlatList
+        showsVerticalScrollIndicator={false}
+        bounces={false}
+        style={styles.flatlistContainer}
         ListHeaderComponent={
           <View>
             <View style={styles.videoInfoContainer}>
@@ -91,8 +87,8 @@ const VideoView: FC = () => {
         numColumns={2}
         contentContainerStyle={styles.scrollView}
         data={[1, 2, 3, 4, 5, 6]}
-        keyExtractor={(item, index) => index.toString()}
-        renderItem={({item, index}) => {
+        keyExtractor={(_item, index) => index.toString()}
+        renderItem={({}) => {
           return <VideoDisplayCard />;
         }}
         columnWrapperStyle={styles.flatlistColumn}
@@ -108,7 +104,7 @@ const styles = ScaledSheet.create({
   scrollView: {
     flexGrow: 1,
     backgroundColor: Colors.secondary.main,
-    paddingTop: 30,
+    paddingTop: 10,
     paddingBottom: 100,
   },
   mainContainer: {
@@ -222,5 +218,9 @@ const styles = ScaledSheet.create({
     fontFamily: FontFamily.latoSemiBold,
     fontSize: 20,
     marginHorizontal: '20@s',
+  },
+  flatlistContainer: {
+    borderColor: 'red',
+    marginTop: 20,
   },
 });

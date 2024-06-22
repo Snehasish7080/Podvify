@@ -5,19 +5,14 @@ import {Colors} from '../utils/theme/Colors';
 import {FontFamily} from '../utils/theme/FontFamily';
 import {getFontSize} from '../utils/theme/FontScale';
 import AppText from './AppText';
-import {useNavigation} from '@react-navigation/native';
-import {NativeStackNavigationProp} from '@react-navigation/native-stack';
-import {FeedNavigationRouteList} from '../Navigations/FeedNavigation/FeedNavigationTypes';
 
-const FeedCard: FC = () => {
-  const navigation =
-    useNavigation<NativeStackNavigationProp<FeedNavigationRouteList>>();
+type FeedCardProps = {
+  onPress: () => void;
+};
+const FeedCard: FC<FeedCardProps> = ({onPress}) => {
   return (
     <View style={styles.mainContainer}>
-      <Pressable
-        onPress={() => {
-          navigation.navigate('VideoView');
-        }}>
+      <Pressable onPress={onPress}>
         <Image
           source={{
             uri: 'https://images.unsplash.com/photo-1607805074778-eeb1aafe3641?q=80&w=2832&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D',

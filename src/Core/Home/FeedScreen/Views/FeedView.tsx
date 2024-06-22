@@ -9,8 +9,10 @@ import HighlightCard from '../../../../Components/HighlightCard';
 import {getFontSize} from '../../../../utils/theme/FontScale';
 import ShowCaseCard from '../../../../Components/ShowCaseCard';
 import FeedCard from '../../../../Components/FeedCard';
+import useFeedViewModel from '../ViewModels/FeedViewModel';
 
 const FeedView: FC = () => {
+  const {onPressShowCaseCard, onPressFeedCard} = useFeedViewModel();
   return (
     <ScrollView
       contentContainerStyle={styles.scrollView}
@@ -50,22 +52,22 @@ const FeedView: FC = () => {
           horizontal
           showsHorizontalScrollIndicator={false}
           contentContainerStyle={styles.horizontalScrollView}>
-          <ShowCaseCard />
+          <ShowCaseCard onPress={onPressShowCaseCard} />
           <View style={styles.cardSeparator} />
-          <ShowCaseCard />
+          <ShowCaseCard onPress={onPressShowCaseCard} />
           <View style={styles.cardSeparator} />
-          <ShowCaseCard />
+          <ShowCaseCard onPress={onPressShowCaseCard} />
         </ScrollView>
         <AppText style={styles.followingTitle}>Followings</AppText>
         <View style={styles.followingSeparator} />
         <View style={styles.feedBox}>
-          <FeedCard />
+          <FeedCard onPress={onPressFeedCard} />
         </View>
         <View style={styles.feedBox}>
-          <FeedCard />
+          <FeedCard onPress={onPressFeedCard} />
         </View>
         <View style={styles.feedBox}>
-          <FeedCard />
+          <FeedCard onPress={onPressFeedCard} />
         </View>
       </View>
     </ScrollView>
