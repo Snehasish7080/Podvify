@@ -1,12 +1,53 @@
-import React, {FC} from 'react';
+import React, {FC, useRef, useState} from 'react';
 import {Image, Pressable, ScrollView, View} from 'react-native';
 import {ScaledSheet} from 'react-native-size-matters';
 import {Colors} from '../../../../utils/theme/Colors';
 import AppText from '../../../../Components/AppText';
 import {getFontSize} from '../../../../utils/theme/FontScale';
 import {FontFamily} from '../../../../utils/theme/FontFamily';
+import Animated, {
+  runOnJS,
+  useEvent,
+  useHandler,
+  useSharedValue,
+} from 'react-native-reanimated';
+import PagerView from 'react-native-pager-view';
+
+const AnimatedPager = Animated.createAnimatedComponent(PagerView);
+
+function usePagerScrollHandler(handlers: any, dependencies?: any) {
+  const {context, doDependenciesDiffer} = useHandler(handlers, dependencies);
+  const subscribeForEvents = ['onPageScroll'];
+
+  return useEvent<any>(
+    event => {
+      'worklet';
+      const {onPageScroll} = handlers;
+      if (onPageScroll && event.eventName.endsWith('onPageScroll')) {
+        onPageScroll(event, context);
+      }
+    },
+    subscribeForEvents,
+    doDependenciesDiffer,
+  );
+}
 
 const ProfileView: FC = () => {
+  const [pagerIndex, setPagerIndex] = useState(0);
+
+  const indicatorXPosition = useSharedValue(0);
+  const scrollXIndex = useSharedValue(0);
+  const ref = useRef<PagerView>(null);
+
+  const handler = usePagerScrollHandler({
+    onPageScroll: (e: any) => {
+      'worklet';
+      indicatorXPosition.value = e.offset;
+      scrollXIndex.value = e.position;
+      runOnJS(setPagerIndex)(e.position);
+    },
+  });
+
   return (
     <ScrollView contentContainerStyle={styles.scrollView}>
       <View style={styles.mainContainer}>
@@ -36,6 +77,24 @@ const ProfileView: FC = () => {
             <AppText style={styles.editBtnTxt}>Edit</AppText>
           </Pressable>
         </View>
+        <AnimatedPager
+          initialPage={0}
+          orientation="horizontal"
+          style={{
+            flex: 1,
+            borderColor: 'red',
+            borderWidth: 2,
+            width: '100%',
+          }}
+          // onPageScroll={(e) => {
+          //   scrollXIndex.value = e.nativeEvent.position;
+          //   setPagerIndex(e.nativeEvent.position);
+          // }}
+          onPageScroll={handler}
+          ref={ref}>
+          <View style={{borderWidth: 2, borderColor: 'red'}}></View>
+          <View></View>
+        </AnimatedPager>
       </View>
     </ScrollView>
   );
